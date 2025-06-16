@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
+import { signIn } from "@/auth"
 
 export default function LoginForm() {
   return (
@@ -55,9 +56,17 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <Button className="mt-4 w-full">
-          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-        </Button>
+        <form
+          action={async () => {
+            "use server"
+            await signIn("google")
+          }}
+        >
+          <Button className="mt-4 w-full" type="submit">
+            Sign in with Google
+            <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+          </Button>
+        </form>
         <div className="flex h-8 items-end space-x-1">
           {/* Add form errors here */}
         </div>
